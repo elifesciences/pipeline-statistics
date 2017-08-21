@@ -9,7 +9,7 @@ runs = {}
 for line in content:
     event = json.loads(line)
     run = runs.get(event['number'], {})
-    run[event['type']] =  datetime.strptime(event['datetime'], "%Y-%m-%dT%H:%M:%S.%fZ")
+    run[event['type']] = datetime.strptime(event['datetime'], "%Y-%m-%dT%H:%M:%S.%fZ")
     runs[event['number']] = run
 
 successes = 0
