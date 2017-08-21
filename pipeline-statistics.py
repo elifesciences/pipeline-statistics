@@ -1,15 +1,10 @@
-from datetime import datetime
-import json
+from model import event
 import sys
 
-with open(sys.argv[1]) as f:
-    content = f.readlines()
-
 runs = {}
-for line in content:
-    event = json.loads(line)
+for event in event.load_all(sys.argv[1]):
     run = runs.get(event['number'], {})
-    run[event['type']] = datetime.strptime(event['datetime'], "%Y-%m-%dT%H:%M:%S.%fZ")
+    run[event['type']] = event['datetime']
     runs[event['number']] = run
 
 successes = 0

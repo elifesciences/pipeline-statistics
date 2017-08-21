@@ -1,15 +1,9 @@
-from datetime import datetime
-import json
 import sys
+from model import event
 
-with open(sys.argv[1]) as f:
-    content = f.readlines()
-
-runs = {}
-for line in content:
-    event = json.loads(line)
+for event in event.load_all(sys.argv[1]):
     if event['type'] != 'pipeline-success':
         continue
-    last_success = datetime.strptime(event['datetime'], "%Y-%m-%dT%H:%M:%S.%fZ")
+    last_success = event['datetime']
 
 print last_success
