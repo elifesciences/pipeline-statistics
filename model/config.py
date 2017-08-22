@@ -1,5 +1,5 @@
 import logging
-FORMAT = "[%(asctime)-15s][%(levelname)s][%(name)s] %(message)s"
+FORMAT = "[%(asctime)-15s][%(levelname)s] %(message)s"
 
 handler = logging.StreamHandler()
 handler.setFormatter(logging.Formatter(FORMAT))
