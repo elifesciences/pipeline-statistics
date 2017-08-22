@@ -1,9 +1,5 @@
 import sys
 from model import event
+from model.config import LOG
 
-for event in event.load_all(sys.argv[1]):
-    if event['type'] != 'pipeline-success':
-        continue
-    last_success = event['datetime']
-
-print last_success
+LOG.info(event.last(sys.argv[1], 'pipeline-success'))

@@ -1,4 +1,5 @@
 from datetime import datetime
+from . import config
 import json
 
 def load_all(filename, type=None):
@@ -11,3 +12,8 @@ def load_all(filename, type=None):
                     continue
             event['datetime'] = datetime.strptime(event['datetime'], "%Y-%m-%dT%H:%M:%S.%fZ")
             yield event
+
+def last(filename, type=None):
+    for event in load_all(filename, type):
+        last_success = event['datetime']
+    return last_success
